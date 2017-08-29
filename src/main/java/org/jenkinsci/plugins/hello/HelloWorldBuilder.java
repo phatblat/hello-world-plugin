@@ -186,6 +186,30 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
             return FormValidation.ok();
         }
 
+        /** Return ok(), warn(), or error() based on user input.
+         * @param value user input to be validated
+         * @return FormValidation matching user input
+         * @throws IOException
+         * @throws ServletException
+         */
+        public FormValidation doCheckSleepTime(@QueryParameter final String value)
+                throws IOException, ServletException {
+            if (value == null || value.isEmpty()) {
+                return FormValidation.ok(); // Null accepted
+            }
+            // Remove leading and trailing spaces
+            if (value.trim().isEmpty()) {
+                return FormValidation.ok(); // Empty string accepted
+            }
+            long sleepTime;
+            try {
+                sleepTime = Long.parseLong(value);
+            } catch (NumberFormatException nfe) {
+                return FormValidation.error("Sleep time must be an integer");
+            }
+            return FormValidation.ok();
+        }
+
         /**
          * This human readable name is used in the configuration screen.
          *

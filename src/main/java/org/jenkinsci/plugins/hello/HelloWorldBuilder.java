@@ -45,9 +45,6 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
     /** Sleep duration in milliseconds. */
     private long sleepTime = 0;
 
-    /** Magic number. */
-    private final double millisecondsInASecond = 1000.0;
-
     /**
      * This annotation tells Jenkins to call this constructor, with values from
      * the configuration form page with matching parameter names.
@@ -100,11 +97,11 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
             listener.getLogger().println("Hello, " + name + "!");
         }
 
-        listener.getLogger().println("Sleeping "
-                + (sleepTime / millisecondsInASecond) + " seconds");
+        /* Magic number. */
+        final long millisecondsInASecond = 1000;
+        listener.getLogger().println("Sleeping " + (sleepTime / millisecondsInASecond) + " seconds");
         Thread.sleep(sleepTime);
-        listener.getLogger().println("Awake after "
-                + (sleepTime / millisecondsInASecond) + "seconds");
+        listener.getLogger().println("Awake after " + (sleepTime / millisecondsInASecond) + "seconds");
     }
 
     /**
@@ -189,8 +186,8 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
         /** Return ok(), warn(), or error() based on user input.
          * @param value user input to be validated
          * @return FormValidation matching user input
-         * @throws IOException
-         * @throws ServletException
+         * @throws IOException on input / output error
+         * @throws ServletException on servlet exception
          */
         public FormValidation doCheckSleepTime(@QueryParameter final String value)
                 throws IOException, ServletException {

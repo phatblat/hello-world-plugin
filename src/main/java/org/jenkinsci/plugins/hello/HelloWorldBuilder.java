@@ -205,7 +205,10 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
             try {
                 sleepTime = Long.parseLong(value);
             } catch (NumberFormatException nfe) {
-                return FormValidation.error("Sleep time must be an integer");
+                return FormValidation.error("Sleep time must be a positive integer");
+            }
+            if (sleepTime < 0) {
+                return FormValidation.error("Sleep time must be a positive integer");
             }
             return FormValidation.ok();
         }

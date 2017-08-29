@@ -210,6 +210,9 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
             if (sleepTime >= 10 * 60 * 1000) {
                 return FormValidation.error("Sleep time must be less than 10 minutes");
             }
+            if (sleepTime >=      60 * 1000) {
+                return FormValidation.warning("Sleep time should be less than 1 minute");
+            }
             return FormValidation.ok();
         }
 

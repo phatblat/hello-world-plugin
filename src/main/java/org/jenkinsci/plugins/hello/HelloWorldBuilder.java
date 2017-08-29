@@ -98,10 +98,10 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
         }
 
         /* Magic number. */
-        final long millisecondsInASecond = 1000;
+        final double millisecondsInASecond = 1000.0;
         listener.getLogger().println("Sleeping " + (sleepTime / millisecondsInASecond) + " seconds");
         Thread.sleep(sleepTime);
-        listener.getLogger().println("Awake after " + (sleepTime / millisecondsInASecond) + "seconds");
+        listener.getLogger().println("Awake after " + (sleepTime / millisecondsInASecond) + " seconds");
     }
 
     /**

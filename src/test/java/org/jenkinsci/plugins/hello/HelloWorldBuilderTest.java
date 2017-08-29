@@ -51,22 +51,22 @@ public class HelloWorldBuilderTest {
     @Rule
     public JenkinsRule jenkins = new JenkinsRule();
 
-    private HelloWorldBuilder builder = null;
     private String name = null;
+    private String builderName = "Builder name";
+    private HelloWorldBuilder builder = new HelloWorldBuilder(builderName);
 
-    public HelloWorldBuilderTest() {
-    }
+    public HelloWorldBuilderTest() {}
 
     @Before
     public void setUp() {
         name = "New name";
-        builder = new HelloWorldBuilder(name);
+        builder = new HelloWorldBuilder(builderName);
     }
 
     @Test
     @WithoutJenkins // This test does not need the JenkinsRule instance
     public void testGetName() {
-        assertThat(builder.getName(), is(name));
+        assertThat(builder.getName(), is(builderName));
     }
 
     @Test

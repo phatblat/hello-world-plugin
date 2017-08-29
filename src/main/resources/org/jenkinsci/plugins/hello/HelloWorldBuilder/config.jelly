@@ -20,4 +20,7 @@
   <!--
     If you have multiple properties that need to be configured, add more <f:entry />s
   -->
+  <f:entry title="Sleep time" field="sleepTime">
+    <f:textbox />
+  </f:entry>
 </j:jelly>
